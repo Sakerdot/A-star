@@ -3,7 +3,7 @@
 struct lessCost {
     bool operator() (const vertexCost & lhs, const vertexCost &rhs) const
     {
-        return lhs.cost < rhs.cost;
+        return lhs.cost > rhs.cost;
     }
 };
 
@@ -44,7 +44,11 @@ std::vector<int> aStar(const std::vector<std::vector<int>> & graph, int start, i
         {
             if (graph[currentVertex.node][neighbour] != 0)
             {
-                notFinished.push(vertexCost(neighbour, heuristic(neighbour, goal), graph[currentVertex.node][neighbour]));
+                notFinished.push(vertexCost(
+                    neighbour,
+                    currentVertex.cost + heuristic(neighbour, goal),
+                    currentVertex.cost + graph[currentVertex.node][neighbour])
+                );
             }
         }
     }
