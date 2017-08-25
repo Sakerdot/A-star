@@ -12,9 +12,9 @@ int heuristic(const int node, const int goal)
 
 }
 
-path aStar(const std::vector<std::vector<int>> & graph, int start, int goal)
+std::vector<int> aStar(const std::vector<std::vector<int>> & graph, int start, int goal)
 {
-    path result;
+    std::vector<int> path;
 
     std::set<int> finishedVertices;
     std::priority_queue<vertexCost, std::vector<vertexCost>, lessCost> notFinished;
@@ -22,29 +22,30 @@ path aStar(const std::vector<std::vector<int>> & graph, int start, int goal)
     notFinished.push(vertexCost(start, heuristic(start, goal), 0));
 
     while (!notFinished.empty()) {
-        auto current = notFinished.pop();
+        auto currentVertex = notFinished.top();
+        notFinished.pop();
 
-        if (current.vertex == goal)
+        if (currentVertex.node == goal)
         {
-            return result;
+            return path;
         }
 
-        if (finishedVertices.find(current.vertex) != finishedVertices.end())
+        if (finishedVertices.find(currentVertex.node) != finishedVertices.end())
         {
             continue;
         }
 
-        result.push_back(current.vertex);
-        finishedVertices.insert(current.vertex);
+        path.push_back(currentVertex.node);
+        finishedVertices.insert(currentVertex.node);
 
-        for (int neighbour = 0; neighbour < graph[current.vertex].size(); ++neighbour)
+        for (int neighbour = 0; neighbour < graph[currentVertex.node].size(); ++neighbour)
         {
-            if (graph[current.vertex][neighbour] != 0)
+            if (graph[currentVertex.node][neighbour] != 0)
             {
-                notFinished.push(vertexCost(neighbour, heuristic(neighbour, goal), graph[current.vertex][neighbour]));
+                notFinished.push(vertexCost(neighbour, heuristic(neighbour, goal), graph[currentVertex.node][neighbour]));
             }
         }
     }
     
-    return result;
+    return path;
 }

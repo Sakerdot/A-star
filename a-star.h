@@ -3,8 +3,6 @@
 #include <queue>
 #include <set>
 
-typedef std::vector<int> path;
-
 struct vertexCost {
     int node;
     // Heuristic + cost from the start
@@ -21,4 +19,4 @@ struct vertexCost {
 
 int heuristic(const int node, const int goal);
 
-path aStar(const std::vector<std::vector<int>> & graph, int start, int goal);
+std::vector<int> aStar(const std::vector<std::vector<int>> & graph, int start, int goal);
