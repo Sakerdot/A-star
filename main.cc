@@ -46,15 +46,10 @@ int main()
 
     for (auto node : path)
     {
-        std::cout << node;
-
-        if (&node != &path.back())
-        {
-            cout << ", ";
-        }
+        std::cout << node << ", ";
     }
 
     std::cout << std::endl;
-    
+
     return 1;
 }

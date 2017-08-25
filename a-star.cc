@@ -9,7 +9,8 @@ struct lessCost {
 
 int heuristic(const int node, const int goal) 
 {
-
+    // Test purposes
+    return 1000;
 }
 
 std::vector<int> aStar(const std::vector<std::vector<int>> & graph, int start, int goal)
@@ -27,6 +28,7 @@ std::vector<int> aStar(const std::vector<std::vector<int>> & graph, int start, i
 
         if (currentVertex.node == goal)
         {
+            path.push_back(currentVertex.node);
             return path;
         }
 
