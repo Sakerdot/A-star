@@ -40,14 +40,15 @@ int main()
     auto newGraph = Graph(vertices);
     createGraph(newGraph);
 
-    std::vector<int> path = aStar(newGraph, 0, vertices - 1);
+    auto path = aStar(newGraph, 0, vertices - 1);
 
-    for (auto node : path)
+    int pathLength = path.size();
+    for (int i = 0; i < pathLength - 1; ++i)
     {
-        std::cout << node << ", ";
+        std::cout << path[i] << ", ";
     }
 
-    std::cout << std::endl;
+    std::cout << path[pathLength - 1] << std::endl;
 
     return 1;
 }
