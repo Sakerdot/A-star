@@ -7,12 +7,11 @@ void createGraph(Graph & graph)
     
     for (int i = 0; i < vertices; ++i)
     {
-        std::cout << "Coordinates for node " << i << " (x y)";
+        std::cout << "Coordinates for node " << i << " (x y): ";
 
         Coordinates coordinates;
         std::cin >> coordinates.x;
         std::cin >> coordinates.y;
-        std::cout << std::endl;
 
         graph.setCoordinates(i, coordinates);
 
@@ -22,10 +21,11 @@ void createGraph(Graph & graph)
 
             int length;
             std::cin >> length;
-            std::cout << std::endl;
 
             graph.connectNodes(i, j, length);
         }
+
+        std::cout << std::endl;
     }
 }
 
