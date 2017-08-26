@@ -1,37 +1,32 @@
 #include <iostream>
 #include "a-star.h"
 
-std::vector<std::vector<int>> createGraph(int vertices)
+void createGraph(Graph & graph)
 {
-    std::vector<std::vector<int>> graph;
-
+    int vertices = graph.getVertices();
+    
     for (int i = 0; i < vertices; ++i)
     {
-        std::vector<int> row;
-        for (int j = 0; j < vertices; ++j)
-        {
-            row.push_back(0);
-        }
+        std::cout << "Coordinates for node " << i << " (x y)";
 
-        graph.push_back(row);
-    }
+        Coordinates coordinates;
+        std::cin >> coordinates.x;
+        std::cin >> coordinates.y;
+        std::cout << std::endl;
 
-    for (int i = 0; i < vertices; ++i)
-    {
+        graph.setCoordinates(i, coordinates);
+
         for (int j = i + 1; j < vertices; ++j)
         {
-            std::cout << i << " length to " << j << " (0 for no connection): ";
+            std::cout << "Node " << i << " length to node " << j << " (0 for no connection): ";
 
             int length;
             std::cin >> length;
             std::cout << std::endl;
 
-            graph[i][j] = length;
-            graph[j][i] = length;
+            graph.connectNodes(i, j, length);
         }
     }
-
-    return graph;
 }
 
 int main()
@@ -41,8 +36,11 @@ int main()
     int vertices;
     std::cin >> vertices;
     std::cout << std::endl;
+    
+    auto newGraph = Graph(vertices);
+    createGraph(newGraph);
 
-    std::vector<int> path = aStar(createGraph(vertices), 0, vertices - 1);
+    std::vector<int> path = aStar(newGraph, 0, vertices - 1);
 
     for (auto node : path)
     {
