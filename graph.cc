@@ -1,7 +1,7 @@
 #include "graph.h"
 
-Graph::Graph(int vertices):
-    vertices(vertices)
+Graph::Graph(int vertices)
+    : vertices(vertices)
 {
     for (int i = 0; i < vertices; ++i)
     {

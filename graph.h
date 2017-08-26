@@ -4,12 +4,14 @@ struct Coordinates {
     int x;
     int y;
 
-    Coordinates() {}
+    Coordinates()
+    {
+    }
 
-    Coordinates(int x, int y):
-        x(x),
-        y(y)
-    {}
+    Coordinates(int x, int y)
+        : x(x), y(y)
+    {
+    }
 };
 
 class Graph {
@@ -20,17 +22,21 @@ public:
 
     void connectNodes(int nodeA, int nodeB, int length);
 
-    const std::vector<int>& getNeighboursOf(int node) const {
+    const std::vector<int>& getNeighboursOf(int node) const
+    {
         return this->adjancencyMatrix[node];
     }
 
-    const Coordinates& getCoordinatesOf(int node) const {
+    const Coordinates& getCoordinatesOf(int node) const
+    {
         return this->verticesCoordinates[node];
     }
 
-    int getVertices() const { 
-        return this->vertices; 
+    int getVertices() const
+    {
+        return this->vertices;
     }
+
 private:
     int vertices;
     std::vector<std::vector<int>> adjancencyMatrix;

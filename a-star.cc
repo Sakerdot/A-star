@@ -1,12 +1,5 @@
 #include "a-star.h"
 
-struct LessCost {
-    bool operator() (const VertexCost & lhs, const VertexCost &rhs) const
-    {
-        return lhs.cost > rhs.cost;
-    }
-};
-
 double heuristic(const Coordinates & node, const Coordinates & goal)
 {
     // Using Euclidean distance since we don't know how the graph is layed out
@@ -20,10 +13,10 @@ std::vector<int> aStar(const Graph & graph, int start, int goal)
     std::vector<int> path;
 
     std::set<int> finishedVertices;
-    std::priority_queue<VertexCost, std::vector<VertexCost>, LessCost> notFinished;
+    std::priority_queue<VertexCost, std::vector<VertexCost>, std::greater<VertexCost>> notFinished;
 
     notFinished.push(VertexCost(
-        start, 
+        start,
         heuristic(graph.getCoordinatesOf(start), graph.getCoordinatesOf(goal)),
         0)
     );
@@ -54,7 +47,7 @@ std::vector<int> aStar(const Graph & graph, int start, int goal)
                 notFinished.push(VertexCost(
                     neighbour,
                     currentVertex.cost + heuristic(
-                        graph.getCoordinatesOf(neighbour), 
+                        graph.getCoordinatesOf(neighbour),
                         graph.getCoordinatesOf(goal)),
                     currentVertex.cost + neighbours[neighbour])
                 );

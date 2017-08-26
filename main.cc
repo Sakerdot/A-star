@@ -4,7 +4,7 @@
 void createGraph(Graph & graph)
 {
     int vertices = graph.getVertices();
-    
+
     for (int i = 0; i < vertices; ++i)
     {
         std::cout << "Coordinates for node " << i << " (x y): ";
@@ -32,11 +32,11 @@ void createGraph(Graph & graph)
 int main()
 {
     std::cout << "Number of vertices: ";
-    
+
     int vertices;
     std::cin >> vertices;
     std::cout << std::endl;
-    
+
     auto newGraph = Graph(vertices);
     createGraph(newGraph);
 
