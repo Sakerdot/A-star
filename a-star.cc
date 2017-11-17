@@ -3,7 +3,7 @@
 double heuristic(const Coordinates & node, const Coordinates & goal)
 {
     // Using Euclidean distance since we don't know how the graph is layed out
-    int dx = abs(node.x - goal.y);
+    int dx = abs(node.x - goal.x);
     int dy = abs(node.y - goal.y);
     return sqrt(dx * dx + dy * dy);
 }
